@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caddie Logistics | Expedited Freight Brokerage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Barlow+Condensed:wght@300;400;500;600&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --clay:      #8b3a2a;
+      --clay-lt:   #c47b60;
+      --clay-pale: #e8c4b0;
+      --cream:     #f5ede0;
+      --cream-dk:  #ede0ce;
+      --mist:      #e8ddd0;
+      --ink:       #2b1a14;
+      --ink-lt:    #3d2518;
+      --charcoal:  #1c1208;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ===================== NAV ===================== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--cream);
+      border-bottom: 1px solid var(--mist);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 76px;
+    }
+
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      text-decoration: none;
+    }
+
+    .nav-wordmark {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 32px;
+      color: var(--clay);
+      letter-spacing: -0.025em;
+      line-height: 1;
+    }
+    .nav-wordmark .dot { color: var(--clay-lt); }
+
+    .nav-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 400;
+      font-size: 9px;
+      letter-spacing: 0.5em;
+      color: var(--clay-lt);
+      text-transform: lowercase;
+      padding-left: 0.5em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 4px;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a:hover { color: var(--clay); }
+
+    /* Dropdown */
+    .nav-dropdown {
+      position: relative;
+    }
+    .nav-dropdown > a::after {
+      content: ' ▾';
+      font-size: 10px;
+      opacity: 0.5;
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      background: #fff;
+      border: 1px solid var(--mist);
+      border-radius: 8px;
+      min-width: 220px;
+      padding: 8px 0;
+      box-shadow: 0 12px 40px rgba(43,26,20,0.12);
+      z-index: 200;
+    }
+    .nav-dropdown:hover .dropdown-menu { display: block; }
+
+    .dropdown-menu a {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 400;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-lt);
+      padding: 10px 20px;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+      border-radius: 0;
+    }
+    .dropdown-menu a:hover {
+      background: var(--cream);
+      color: var(--clay);
+    }
+    .dropdown-divider {
+      height: 1px;
+      background: var(--mist);
+      margin: 6px 16px;
+    }
+    .dropdown-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 300;
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--clay-lt);
+      padding: 8px 20px 4px;
+    }
+
+    .nav-cta {
+      background: var(--clay) !important;
+      color: var(--cream) !important;
+      padding: 10px 22px !important;
+      border-radius: 4px !important;
+      font-weight: 600 !important;
+    }
+    .nav-cta:hover { background: var(--ink) !important; color: var(--cream) !important; }
+
+    /* ===================== HERO ===================== */
+    .hero {
+      min-height: 100vh;
+      background: var(--clay);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -120px; left: 30%;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.08);
+    }
+
+    .hero-eyebrow {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 400;
+      font-size: 12px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--clay-lt);
+      margin-bottom: 24px;
+      opacity: 0.8;
+    }
+
+    .hero-headline {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: clamp(56px, 8vw, 110px);
+      color: var(--cream);
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+      margin-bottom: 32px;
+      max-width: 760px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-headline .accent { color: var(--clay-lt); }
+
+    .hero-body {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      font-size: 18px;
+      color: rgba(245,237,224,0.65);
+      line-height: 1.7;
+      max-width: 520px;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-primary {
+      background: var(--cream);
+      color: var(--clay);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding: 16px 32px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-primary:hover { background: var(--ink); color: var(--cream); }
+
+    .btn-ghost {
+      color: rgba(245,237,224,0.6);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 400;
+      font-size: 12px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 16px 24px;
+      border: 1px solid rgba(245,237,224,0.2);
+      border-radius: 4px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .btn-ghost:hover { color: var(--cream); border-color: rgba(245,237,224,0.5); }
+
+    .hero-deco {
+      position: absolute;
+      right: 48px;
+      bottom: 48px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: clamp(140px, 20vw, 260px);
+      color: rgba(255,255,255,0.04);
+      letter-spacing: -0.05em;
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* ===================== STAT BAR ===================== */
+    .stat-bar {
+      background: var(--ink);
+      padding: 32px 48px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 0 24px;
+      border-right: 1px solid rgba(245,237,224,0.08);
+    }
+    .stat-item:first-child { padding-left: 0; }
+    .stat-item:last-child { border-right: none; }
+
+    .stat-number {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 32px;
+      color: var(--clay-lt);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(245,237,224,0.35);
+      line-height: 1.5;
+    }
+
+    /* ===================== SECTION SHARED ===================== */
+    .section-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--clay-lt);
+      margin-bottom: 16px;
+    }
+
+    .section-heading {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: clamp(36px, 5vw, 56px);
+      letter-spacing: -0.025em;
+      line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: 48px;
+    }
+    .section-heading .accent { color: var(--clay); }
+
+    /* ===================== SERVICES ===================== */
+    .services {
+      padding: 96px 48px;
+      background: var(--cream);
+    }
+
+    .services-intro {
+      max-width: 560px;
+      margin-bottom: 56px;
+    }
+
+    .services-intro p {
+      font-size: 17px;
+      color: rgba(43,26,20,0.6);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .services-primary-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .services-primary-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--mist);
+      max-width: 200px;
+    }
+
+    .services-primary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-bottom: 48px;
+    }
+
+    .service-card-primary {
+      background: var(--ink);
+      padding: 40px 36px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.2s;
+    }
+    .service-card-primary:hover { background: var(--ink-lt); }
+    .service-card-primary:first-child { border-radius: 8px 0 0 8px; }
+    .service-card-primary:last-child { border-radius: 0 8px 8px 0; }
+
+    .service-card-primary::before {
+      content: '';
+      position: absolute;
+      bottom: -40px; right: -20px;
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .scp-num {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 11px;
+      color: var(--clay-lt);
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+      opacity: 0.6;
+    }
+
+    .scp-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      color: var(--cream);
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+
+    .scp-specs {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 16px;
+    }
+
+    .scp-spec {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--clay-lt);
+      opacity: 0.7;
+    }
+
+    .scp-desc {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      font-size: 13px;
+      color: rgba(245,237,224,0.45);
+      line-height: 1.65;
+    }
+
+    /* Secondary services */
+    .services-secondary-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(43,26,20,0.35);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .services-secondary-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--mist);
+      max-width: 200px;
+    }
+
+    .services-secondary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .service-card-secondary {
+      background: var(--mist);
+      border-radius: 8px;
+      padding: 24px 22px;
+      border: 1px solid var(--cream-dk);
+      transition: border-color 0.2s;
+    }
+    .service-card-secondary:hover { border-color: var(--clay-lt); }
+
+    .scs-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+
+    .scs-desc {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      color: rgba(43,26,20,0.5);
+      line-height: 1.6;
+    }
+
+    /* ===================== AREAS OF FOCUS ===================== */
+    .areas {
+      padding: 96px 48px;
+      background: #f0e6d5;
+    }
+
+    .areas-header {
+      margin-bottom: 48px;
+    }
+
+    /* Tab nav */
+    .tab-nav {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 40px;
+      border-bottom: 1px solid var(--mist);
+      padding-bottom: 0;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(43,26,20,0.45);
+      background: none;
+      border: none;
+      padding: 12px 20px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .tab-btn:hover { color: var(--clay); }
+    .tab-btn.active {
+      color: var(--clay);
+      border-bottom-color: var(--clay);
+    }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Manufacturing sub-verticals */
+    .mfg-intro {
+      max-width: 640px;
+      margin-bottom: 40px;
+    }
+    .mfg-intro p {
+      font-size: 16px;
+      color: rgba(43,26,20,0.6);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .vertical-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .vertical-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 28px 26px;
+      border: 1px solid var(--mist);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .vertical-card:hover {
+      border-color: var(--clay-lt);
+      box-shadow: 0 8px 32px rgba(139,58,42,0.08);
+    }
+
+    .vc-industry {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--clay);
+      letter-spacing: -0.01em;
+      margin-bottom: 14px;
+    }
+
+    .vc-section-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 500;
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .vc-challenge-label { color: rgba(43,26,20,0.35); }
+    .vc-solution-label { color: var(--clay-lt); }
+
+    .vc-text {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      color: rgba(43,26,20,0.6);
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+
+    .vc-solution-text {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 400;
+      font-size: 12px;
+      color: var(--ink);
+      line-height: 1.65;
+    }
+
+    /* Generic focus panel */
+    .focus-panel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .fp-left {}
+
+    .fp-headline {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 36px;
+      color: var(--ink);
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .fp-headline .accent { color: var(--clay); }
+
+    .fp-body {
+      font-size: 15px;
+      color: rgba(43,26,20,0.6);
+      line-height: 1.75;
+      font-weight: 300;
+      margin-bottom: 24px;
+    }
+
+    .fp-right {}
+
+    .fp-block {
+      background: #fff;
+      border-radius: 8px;
+      padding: 28px;
+      border: 1px solid var(--mist);
+      margin-bottom: 16px;
+    }
+
+    .fp-block-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 500;
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(43,26,20,0.35);
+      margin-bottom: 10px;
+    }
+
+    .fp-block-label.solution { color: var(--clay-lt); }
+
+    .fp-block-text {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      font-size: 13px;
+      color: rgba(43,26,20,0.65);
+      line-height: 1.7;
+    }
+
+    .fp-block-text.bold {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    /* ===================== WHY CADDIE ===================== */
+    .why {
+      padding: 96px 48px;
+      background: var(--cream);
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+    }
+
+    .why-item {
+      background: var(--mist);
+      padding: 40px 36px;
+      border-radius: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .why-item:nth-child(1) { border-radius: 8px 0 0 0; }
+    .why-item:nth-child(2) { border-radius: 0 8px 0 0; }
+    .why-item:nth-child(3) { border-radius: 0 0 0 8px; }
+    .why-item:nth-child(4) { border-radius: 0 0 8px 0; }
+
+    .why-num {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 48px;
+      color: var(--clay);
+      opacity: 0.12;
+      line-height: 1;
+      margin-bottom: 16px;
+      letter-spacing: -0.03em;
+    }
+
+    .why-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      color: var(--ink);
+      letter-spacing: -0.015em;
+      margin-bottom: 14px;
+    }
+
+    .why-body {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      color: rgba(43,26,20,0.6);
+      line-height: 1.75;
+    }
+
+    /* ===================== ABOUT ===================== */
+    .about {
+      padding: 96px 48px;
+      background: var(--ink);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-left {}
+
+    .about-visual {
+      background: var(--clay);
+      border-radius: 8px;
+      padding: 48px;
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 1.2 / 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .about-visual::before {
+      content: '';
+      position: absolute;
+      bottom: -80px; right: -60px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.12);
+    }
+
+    .about-visual-wordmark {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 52px;
+      color: var(--cream);
+      letter-spacing: -0.025em;
+      line-height: 1;
+      position: relative;
+      z-index: 1;
+    }
+    .about-visual-wordmark .dot { color: var(--clay-lt); }
+
+    .about-visual-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 400;
+      font-size: 13px;
+      letter-spacing: 0.5em;
+      color: rgba(245,237,224,0.45);
+      text-transform: lowercase;
+      padding-left: 0.5em;
+      margin-top: 6px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-stats {
+      display: flex;
+      gap: 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-stat {}
+
+    .about-stat-num {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 36px;
+      color: var(--cream);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .about-stat-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 300;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(245,237,224,0.45);
+      margin-top: 3px;
+    }
+
+    .about-right {}
+
+    .about-right .section-label { color: var(--clay-lt); opacity: 0.7; }
+
+    .pull-quote {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: clamp(28px, 4vw, 42px);
+      color: var(--cream);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+    .pull-quote .accent { color: var(--clay-lt); }
+
+    .about-body {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      color: rgba(245,237,224,0.5);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .about-body strong {
+      color: rgba(245,237,224,0.8);
+      font-weight: 500;
+    }
+
+    .about-proof {
+      margin-top: 32px;
+      padding: 20px 24px;
+      background: rgba(245,237,224,0.05);
+      border-left: 3px solid var(--clay-lt);
+      border-radius: 0 6px 6px 0;
+    }
+
+    .about-proof-text {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      color: rgba(245,237,224,0.65);
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* ===================== CONTACT ===================== */
+    .contact {
+      padding: 96px 48px;
+      background: var(--cream);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact-left {}
+
+    .contact-info {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .contact-item-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 400;
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--clay-lt);
+    }
+
+    .contact-item-value {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    a.contact-item-value:hover { color: var(--clay); }
+
+    .contact-tagline {
+      margin-top: 32px;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      color: rgba(43,26,20,0.5);
+      line-height: 1.7;
+      max-width: 360px;
+    }
+
+    /* Form */
+    .contact-form-wrap {}
+
+    .form-notice {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--mist);
+      border: 1px solid var(--cream-dk);
+      border-radius: 4px;
+      padding: 8px 14px;
+      margin-bottom: 24px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(43,26,20,0.4);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .form-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 400;
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(43,26,20,0.45);
+    }
+
+    .form-input {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: var(--ink);
+      background: var(--mist);
+      border: 1px solid transparent;
+      border-radius: 4px;
+      padding: 12px 14px;
+      outline: none;
+      width: 100%;
+      transition: border-color 0.2s;
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .form-input::placeholder { color: #b8a898; }
+
+    textarea.form-input { resize: vertical; min-height: 100px; }
+
+    .form-submit {
+      width: 100%;
+      background: rgba(139,58,42,0.3);
+      color: rgba(245,237,224,0.4);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding: 16px;
+      border-radius: 4px;
+      border: none;
+      cursor: not-allowed;
+      margin-top: 8px;
+    }
+
+    /* ===================== FOOTER ===================== */
+    footer {
+      background: var(--charcoal);
+      padding: 36px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo { display: flex; flex-direction: column; gap: 2px; }
+
+    .footer-wordmark {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      color: rgba(245,237,224,0.7);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .footer-wordmark .dot { color: var(--clay-lt); }
+
+    .footer-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 300;
+      font-size: 7px;
+      letter-spacing: 0.45em;
+      color: var(--clay-lt);
+      text-transform: lowercase;
+      opacity: 0.6;
+    }
+
+    .footer-copy {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: rgba(245,237,224,0.2);
+      text-transform: uppercase;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(245,237,224,0.28);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--clay-lt); }
+  </style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav>
+  <a href="#home" class="nav-logo">
+    <div class="nav-wordmark">caddie<span class="dot">.</span></div>
+    <div class="nav-sub">logistics</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li class="nav-dropdown">
+      <a href="#areas">Areas of Focus</a>
+      <div class="dropdown-menu">
+        <div class="dropdown-label">Manufacturing</div>
+        <a href="#areas" onclick="setTab('manufacturing')">Automotive</a>
+        <a href="#areas" onclick="setTab('manufacturing')">Plastics &amp; Packaging</a>
+        <a href="#areas" onclick="setTab('manufacturing')">Heavy Machinery</a>
+        <a href="#areas" onclick="setTab('manufacturing')">Aerospace</a>
+        <a href="#areas" onclick="setTab('manufacturing')">Retail</a>
+        <a href="#areas" onclick="setTab('manufacturing')">Healthcare</a>
+        <a href="#areas" onclick="setTab('manufacturing')">Energy</a>
+        <div class="dropdown-divider"></div>
+        <a href="#areas" onclick="setTab('events')">Events &amp; Trade Shows</a>
+        <a href="#areas" onclick="setTab('ltl')">LTL Rescue &amp; Final Mile</a>
+        <a href="#areas" onclick="setTab('3pl')">3PLs &amp; Freight Forwarders</a>
+      </div>
+    </li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+  </ul>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="home">
+  <div class="hero-eyebrow">Expedited Freight Brokerage &nbsp;|&nbsp; Sprinter, Straight Truck &amp; Beyond</div>
+  <h1 class="hero-headline">
+    We read<br>the <span class="accent">course.</span>
+  </h1>
+  <p class="hero-body">
+    Caddie is a selective, operator-led freight brokerage built around sprinter vans and straight trucks. We cover the lower 48 and the air. Quote in minutes. Truck in 2 hours. No drama.
+  </p>
+  <div class="hero-actions">
+    <a href="#contact" class="btn-primary">Get a Quote</a>
+    <a href="#services" class="btn-ghost">Our Services</a>
+  </div>
+  <div class="hero-deco">c.</div>
+</section>
+
+<!-- ===================== STAT BAR ===================== -->
+<div class="stat-bar">
+  <div class="stat-item">
+    <div class="stat-number">2 hrs</div>
+    <div class="stat-label">Truck on site<br>or sooner</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">48</div>
+    <div class="stat-label">States covered<br>Lower 48</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">10+</div>
+    <div class="stat-label">Years experience<br>per operator</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">Air</div>
+    <div class="stat-label">Domestic &amp; international<br>freight capability</div>
+  </div>
+</div>
+
+<!-- ===================== SERVICES ===================== -->
+<section class="services" id="services">
+  <div class="services-intro">
+    <div class="section-label">What We Do</div>
+    <h2 class="section-heading">The right move,<br>every <span class="accent">time.</span></h2>
+    <p>Sprinter vans and straight trucks are our specialty. When your freight needs to move fast, reliably, and with people who pick up the phone, this is where we live.</p>
+  </div>
+
+  <div class="services-primary-label">Primary Capacity</div>
+  <div class="services-primary-grid">
+    <div class="service-card-primary">
+      <div class="scp-num">01</div>
+      <div class="scp-title">Cargo &amp; Sprinter Vans</div>
+      <div class="scp-specs">
+        <span class="scp-spec">Up to 3,500 lbs</span>
+        <span class="scp-spec">Cargo van through 170" sprinter</span>
+      </div>
+      <div class="scp-desc">The fastest ground option for time-critical shipments. Solo or team drivers depending on urgency. Quote in minutes, truck confirmed with a truck in hand.</div>
+    </div>
+    <div class="service-card-primary">
+      <div class="scp-num">02</div>
+      <div class="scp-title">Straight Trucks</div>
+      <div class="scp-specs">
+        <span class="scp-spec">Up to 12,000 lbs</span>
+        <span class="scp-spec">Up to 26 ft box truck</span>
+      </div>
+      <div class="scp-desc">The sweet spot between a van and a full truckload. Perfect for manufacturing rescues, event freight, and everything that does not need a 53-footer.</div>
+    </div>
+    <div class="service-card-primary">
+      <div class="scp-num">03</div>
+      <div class="scp-title">Air Freight</div>
+      <div class="scp-specs">
+        <span class="scp-spec">Domestic &amp; international</span>
+        <span class="scp-spec">Competitive pricing</span>
+      </div>
+      <div class="scp-desc">When ground is not fast enough, we have air covered. Domestic or anywhere in the world. One partner, every mode, no handoffs to figure out yourself.</div>
+    </div>
+  </div>
+
+  <div class="services-secondary-label">Additional Capacity We Cover</div>
+  <div class="services-secondary-grid">
+    <div class="service-card-secondary">
+      <div class="scs-title">Full Truckload</div>
+      <div class="scs-desc">Dry van coverage across the lower 48. We have the network when the load demands a full trailer.</div>
+    </div>
+    <div class="service-card-secondary">
+      <div class="scs-title">Flatbed</div>
+      <div class="scs-desc">Open deck capacity for oversized, heavy, or awkward freight that will not fit in a box.</div>
+    </div>
+    <div class="service-card-secondary">
+      <div class="scs-title">Refrigerated</div>
+      <div class="scs-desc">Temperature-controlled capacity for freight that cannot tolerate variation in transit.</div>
+    </div>
+    <div class="service-card-secondary">
+      <div class="scs-title">LTL</div>
+      <div class="scs-desc">Straight truck LTL pricing loaded into major broker systems. Often cheaper and always faster to market.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== AREAS OF FOCUS ===================== -->
+<section class="areas" id="areas">
+  <div class="areas-header">
+    <div class="section-label">Areas of Focus</div>
+    <h2 class="section-heading">We know your <span class="accent">industry.</span></h2>
+  </div>
+
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="setTab('manufacturing')">Manufacturing</button>
+    <button class="tab-btn" onclick="setTab('events')">Events &amp; Trade Shows</button>
+    <button class="tab-btn" onclick="setTab('ltl')">LTL Rescue &amp; Final Mile</button>
+    <button class="tab-btn" onclick="setTab('3pl')">3PLs &amp; Freight Forwarders</button>
+  </div>
+
+  <!-- MANUFACTURING -->
+  <div class="tab-panel active" id="tab-manufacturing">
+    <div class="mfg-intro">
+      <p>Manufacturing is where we earned our reputation. Whether it is a line-down in automotive, a tight JIT window in plastics, or a critical component in aerospace, we understand that downtime in a plant is not just inconvenient. It is expensive. We move fast because you cannot afford for us not to.</p>
+    </div>
+    <div class="vertical-grid">
+
+      <div class="vertical-card">
+        <div class="vc-industry">Automotive</div>
+        <div class="vc-section-label vc-challenge-label">The Challenge</div>
+        <div class="vc-text">A line-down situation costs thousands of dollars per minute. Parts delays ripple through entire production schedules and every hour of downtime has a dollar figure attached to it.</div>
+        <div class="vc-section-label vc-solution-label">How Caddie Helps</div>
+        <div class="vc-solution-text">Truck confirmed in minutes, on-site within 2 hours. Our operators understand automotive urgency and treat every line-down like the clock is running, because it is. Echo and Coyote call us for exactly this.</div>
+      </div>
+
+      <div class="vertical-card">
+        <div class="vc-industry">Plastics &amp; Packaging</div>
+        <div class="vc-section-label vc-challenge-label">The Challenge</div>
+        <div class="vc-text">Tight production windows, just-in-time delivery requirements, and freight that gets deprioritized by LTL carriers who have bigger fish to fry.</div>
+        <div class="vc-section-label vc-solution-label">How Caddie Helps</div>
+        <div class="vc-solution-text">Sprinters and straight trucks are the right tool for smaller, high-frequency runs. We move what your LTL carrier cannot prioritize, at a competitive price point with a direct delivery commitment.</div>
+      </div>
+
+      <div class="vertical-card">
+        <div class="vc-industry">Heavy Machinery</div>
+        <div class="vc-section-label vc-challenge-label">The Challenge</div>
+        <div class="vc-text">Oversized, heavy, and complicated. Standard carriers decline it or price it to the ceiling. Getting the right truck for the right load takes time most shippers do not have.</div>
+        <div class="vc-section-label vc-solution-label">How Caddie Helps</div>
+        <div class="vc-solution-text">Flatbed and specialized capacity with a team that knows how to navigate the permitting conversation. We find the right carrier, confirm the equipment, and keep the load moving.</div>
+      </div>
+
+      <div class="vertical-card">
+        <div class="vc-industry">Aerospace</div>
+        <div class="vc-section-label vc-challenge-label">The Challenge</div>
+        <div class="vc-text">Parts are expensive, timelines are rigid, and the handling requirements are real. A wrong carrier choice on an aerospace component is not just a service failure, it is a liability.</div>
+        <div class="vc-section-label vc-solution-label">How Caddie Helps</div>
+        <div class="vc-solution-text">We handle high-value, time-critical aerospace components with the care and urgency the industry demands. And when ground is not fast enough, our air freight capability gives you another option on the same call.</div>
+      </div>
+
+      <div class="vertical-card">
+        <div class="vc-industry">Retail</div>
+        <div class="vc-section-label vc-challenge-label">The Challenge</div>
+        <div class="vc-text">Store sets, seasonal pushes, and promotional freight that absolutely cannot miss a window. A late store fixture delivery costs the sale and the relationship.</div>
+        <div class="vc-section-label vc-solution-label">How Caddie Helps</div>
+        <div class="vc-solution-text">Sprinters and straight trucks for final mile retail delivery, store fixtures, and display materials. We understand the retail clock and we show up on time.</div>
+      </div>
+
+      <div class="vertical-card">
+        <div class="vc-industry">Healthcare</div>
+        <div class="vc-section-label vc-challenge-label">The Challenge</div>
+        <div class="vc-text">Medical equipment, devices, and supplies move on hospital timelines. A delayed delivery is not just a logistics problem. It can affect patient care and create real operational disruption.</div>
+        <div class="vc-section-label vc-solution-label">How Caddie Helps</div>
+        <div class="vc-solution-text">We treat healthcare freight with the urgency it demands. Fast confirmation, careful carrier selection, and real-time communication from pickup to delivery. Every time.</div>
+      </div>
+
+      <div class="vertical-card">
+        <div class="vc-industry">Energy</div>
+        <div class="vc-section-label vc-challenge-label">The Challenge</div>
+        <div class="vc-text">Field locations are remote, equipment is heavy, and downtime at a site is expensive. The lane is often unusual and carriers who have not run it before create risk.</div>
+        <div class="vc-section-label vc-solution-label">How Caddie Helps</div>
+        <div class="vc-solution-text">We cover the lanes others skip. Critical energy components get to the job site on your schedule, with the right carrier selected for the actual requirements of the move.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- EVENTS & TRADE SHOWS -->
+  <div class="tab-panel" id="tab-events">
+    <div class="focus-panel">
+      <div class="fp-left">
+        <div class="fp-headline">The show does not <span class="accent">move.</span></div>
+        <div class="fp-body">
+          Events and trade shows run on an unforgiving clock. Your booth materials, AV equipment, product displays, and fixtures have to arrive on time, intact, and ready to set up. A missed delivery does not just cost money. It costs your entire presence at the show.
+        </div>
+        <div class="fp-body">
+          Sprinters and straight trucks are the natural fit for trade show freight. No 53-footer to negotiate, no dock required, and a team that understands the cultural urgency of a show floor deadline. We have moved booth systems, display cases, event signage, AV rigs, and product launch materials across the country.
+        </div>
+        <div class="fp-body">
+          And if ground is not going to make the window, our air freight capability means you have another option before you have a problem.
+        </div>
+      </div>
+      <div class="fp-right">
+        <div class="fp-block">
+          <div class="fp-block-label">The Challenge</div>
+          <div class="fp-block-text">Deadlines are fixed. Venue receiving windows are tight. And a carrier who has never moved trade show freight before will treat it like any other pallet, which is exactly the wrong approach.</div>
+        </div>
+        <div class="fp-block">
+          <div class="fp-block-label solution">How Caddie Handles It</div>
+          <div class="fp-block-text bold">Quote in minutes. Truck in 2 hours. Air if you need it. We confirm the truck before we hang up the phone and we communicate every step of the way from pickup to the show floor.</div>
+        </div>
+        <div class="fp-block">
+          <div class="fp-block-label">What We Move</div>
+          <div class="fp-block-text">Booth systems and displays, AV and staging equipment, branded signage, product launch inventory, promotional materials, and anything else that has to be there when the doors open.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LTL RESCUE -->
+  <div class="tab-panel" id="tab-ltl">
+    <div class="focus-panel">
+      <div class="fp-left">
+        <div class="fp-headline">When LTL fails, we deliver <span class="accent">direct.</span></div>
+        <div class="fp-body">
+          Your LTL carrier missed the appointment, refused the freight, or the transit time fell apart at a hub. Now you have a shipper on the phone and no clean solution. This is one of our most requested services, because it works, and it creates the kind of loyalty that keeps shippers coming back.
+        </div>
+        <div class="fp-body">
+          We pick it up in a sprinter or straight truck and deliver it direct. No more hub touches. No more estimated delivery windows that keep shifting. Just a truck on the ground and a confirmed delivery commitment.
+        </div>
+        <div class="fp-body">
+          Pete's background in LTL means we understand what went wrong and exactly how to fix it. We also have straight truck pricing loaded into major broker systems at rates that often beat standard LTL. So sometimes the better solution was never LTL in the first place.
+        </div>
+      </div>
+      <div class="fp-right">
+        <div class="fp-block">
+          <div class="fp-block-label">The Challenge</div>
+          <div class="fp-block-text">LTL failures happen at the worst times. Refused freight, missed delivery appointments, damaged goods from hub handling, or a transit estimate that keeps moving. The shipper is calling and you need a real answer, not a case number.</div>
+        </div>
+        <div class="fp-block">
+          <div class="fp-block-label solution">How Caddie Handles It</div>
+          <div class="fp-block-text bold">We pick it up and drive it there. Sprinter or straight truck depending on the size, direct to the final destination, with real-time updates from our team. No more hubs. No more guessing.</div>
+        </div>
+        <div class="fp-block">
+          <div class="fp-block-label">Why It Works Long Term</div>
+          <div class="fp-block-text">Shippers who call us once for a rescue usually keep calling us. Because they find out our straight truck rates are competitive with LTL, and the service is not comparable. Direct is better. We just give them access to it.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3PLS -->
+  <div class="tab-panel" id="tab-3pl">
+    <div class="focus-panel">
+      <div class="fp-left">
+        <div class="fp-headline">Your best vendor for small truck <span class="accent">capacity.</span></div>
+        <div class="fp-body">
+          3PLs and freight forwarders use us because their primary carriers fail, and when that happens they need a partner who executes without drama. We are not trying to take your account. We are trying to be the vendor you call when the load has to go and the options you have are not going to cut it.
+        </div>
+        <div class="fp-body">
+          Echo and Coyote are in our customer list. That is not a brag. It is proof that even the biggest brokerages in the industry need a small, nimble team that is picky about who it works with and takes pride in executing at the highest level.
+        </div>
+        <div class="fp-body">
+          We are selective by design. We choose our partners carefully so we can dedicate the attention every load deserves. If you want a vendor who picks up the phone and gets it done, that is exactly what we are.
+        </div>
+      </div>
+      <div class="fp-right">
+        <div class="fp-block">
+          <div class="fp-block-label">The Challenge</div>
+          <div class="fp-block-text">Primary capacity fails on a critical shipment. You need specialty small truck coverage fast, with a service guarantee your customer will actually feel. Most backup options are just smaller versions of the same problem.</div>
+        </div>
+        <div class="fp-block">
+          <div class="fp-block-label solution">How Caddie Handles It</div>
+          <div class="fp-block-text bold">Call us. Truck confirmed in minutes. Pickup within 2 hours. Real-time communication through delivery. Your customer never needs to know there was a problem because there will not be one by the time we are done.</div>
+        </div>
+        <div class="fp-block">
+          <div class="fp-block-label">What Makes Us Different</div>
+          <div class="fp-block-text">10-plus years of hands-on operations experience per person on our team. We have worked inside big brokerages and run expedited divisions. We know what good looks like because we built it before.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ===================== WHY CADDIE ===================== -->
+<section class="why" id="why">
+  <div class="section-label">Why Caddie</div>
+  <h2 class="section-heading">Selective by design.<br>Built to <span class="accent">execute.</span></h2>
+  <div class="why-grid">
+    <div class="why-item">
+      <div class="why-num">01</div>
+      <div class="why-title">Selective by Design</div>
+      <div class="why-body">We choose who we work with. Not to be exclusive, but because the only way to provide the service we promise is to have the bandwidth to deliver it. Every customer we take on gets our full attention. That is the promise and the policy.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-num">02</div>
+      <div class="why-title">Speed That Is Measurable</div>
+      <div class="why-body">Quote with a truck in hand in minutes. Pickup within 2 hours. These are numbers, not claims. Solo or team drivers depending on urgency. We do not say we are fast. We show up fast.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-num">03</div>
+      <div class="why-title">Operators, Not Order-Takers</div>
+      <div class="why-body">Every person on our team has 10-plus years of hands-on freight experience. Pete built and ran expedited divisions at major brokerages. We have been on both sides of this industry and we run our operation the right way because we know what the wrong way looks like.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-num">04</div>
+      <div class="why-title">One Call for Every Mode</div>
+      <div class="why-body">Sprinter van, straight truck, or air freight. Domestic or international. Truckload, flatbed, or reefer when the load demands it. You do not need three vendors and three phone numbers. You need us.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section class="about" id="about">
+  <div class="about-left">
+    <div class="about-visual">
+      <div>
+        <div class="about-visual-wordmark">caddie<span class="dot">.</span></div>
+        <div class="about-visual-sub">logistics</div>
+      </div>
+      <div class="about-stats">
+        <div class="about-stat">
+          <div class="about-stat-num">10+</div>
+          <div class="about-stat-label">Years per operator</div>
+        </div>
+        <div class="about-stat">
+          <div class="about-stat-num">48</div>
+          <div class="about-stat-label">States covered</div>
+        </div>
+        <div class="about-stat">
+          <div class="about-stat-num">Air</div>
+          <div class="about-stat-label">Global capability</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="about-right">
+    <div class="section-label">Who We Are</div>
+    <div class="pull-quote">Built by operators.<br>Run for <span class="accent">shippers.</span></div>
+    <div class="about-body">
+      Caddie Logistics is a freight brokerage built around a simple idea: if you are going to call yourself a service company, you have to actually provide service. We launched Caddie because the industry has plenty of large brokerages and not enough partners who pick up the phone, confirm the truck before hanging up, and treat every load like their name is attached to it.
+    </div>
+    <div class="about-body">
+      <strong>We are small on purpose.</strong> A lean team means every customer gets real attention from someone who has been in this industry long enough to know what they are doing. We are based in Akron, Ohio, and we cover the country from here because good logistics does not require a big office. It requires the right people.
+    </div>
+    <div class="about-proof">
+      <div class="about-proof-text">"We work with some of the largest freight brokerages in the country, including some that are household names in our industry. They use us because when a load has to go, we make it go. That is the business we are in."</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section class="contact" id="contact">
+  <div class="contact-grid">
+    <div class="contact-left">
+      <div class="section-label">Get in Touch</div>
+      <h2 class="section-heading">Ready to move<br>something <span class="accent">now?</span></h2>
+      <div class="contact-info">
+        <div class="contact-item">
+          <span class="contact-item-label">Call or Text</span>
+          <a href="tel:3307010111" class="contact-item-value">(330) 701-0111</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-label">Email</span>
+          <a href="mailto:solutions@caddielogistics.com" class="contact-item-value">solutions@caddielogistics.com</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-label">Location</span>
+          <span class="contact-item-value" style="cursor:default;">Akron, Ohio</span>
+        </div>
+      </div>
+      <div class="contact-tagline">
+        For time-sensitive freight, call or text directly. We pick up. For general inquiries, email works great and we respond the same day.
+      </div>
+    </div>
+
+    <div class="contact-form-wrap">
+      <div class="form-notice">Online form coming soon &nbsp;&mdash;&nbsp; call or email us directly</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">First Name</label>
+          <input class="form-input" type="text" placeholder="Joey" disabled />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Last Name</label>
+          <input class="form-input" type="text" placeholder="Hatjes" disabled />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Company</label>
+        <input class="form-input" type="text" placeholder="Company Name" disabled />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input class="form-input" type="email" placeholder="you@company.com" disabled />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tell us about your freight</label>
+        <textarea class="form-input" placeholder="Origin, destination, weight, equipment needed..." disabled></textarea>
+      </div>
+      <button class="form-submit" disabled>Submit Request</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="footer-logo">
+    <div class="footer-wordmark">caddie<span class="dot">.</span></div>
+    <div class="footer-sub">logistics</div>
+  </div>
+  <div class="footer-copy">&copy; 2026 Caddie Logistics LLC &nbsp;|&nbsp; Akron, Ohio</div>
+  <ul class="footer-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#areas">Areas of Focus</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+  function setTab(name) {
+    // Update buttons
+    document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+      const names = ['manufacturing', 'events', 'ltl', '3pl'];
+      btn.classList.toggle('active', names[i] === name);
+    });
+    // Update panels
+    document.querySelectorAll('.tab-panel').forEach(panel => {
+      panel.classList.remove('active');
+    });
+    const target = document.getElementById('tab-' + name);
+    if (target) target.classList.add('active');
+  }
+
+  // Wire up tab buttons
+  document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+    const names = ['manufacturing', 'events', 'ltl', '3pl'];
+    btn.onclick = () => setTab(names[i]);
+  });
+
+  // Smooth active nav highlight on scroll
+  const sections = document.querySelectorAll('section[id], div[id]');
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY + 100;
+    sections.forEach(sec => {
+      const top = sec.offsetTop;
+      const bottom = top + sec.offsetHeight;
+      if (scrollY >= top && scrollY < bottom) {
+        document.querySelectorAll('.nav-links a').forEach(a => {
+          a.style.color = '';
+        });
+        const match = document.querySelector(`.nav-links a[href="#${sec.id}"]`);
+        if (match && !match.classList.contains('nav-cta')) {
+          match.style.color = '#8b3a2a';
+        }
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
