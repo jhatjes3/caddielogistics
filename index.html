@@ -1055,6 +1055,144 @@
       transition: color 0.2s;
     }
     .footer-links a:hover { color: var(--clay-lt); }
+
+    /* ===================== MOBILE NAV ===================== */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--ink);
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 76px; left: 0; right: 0;
+      background: var(--cream);
+      border-bottom: 1px solid var(--mist);
+      padding: 16px 24px 24px;
+      z-index: 99;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--mist);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu .mobile-cta {
+      background: var(--clay);
+      color: var(--cream) !important;
+      text-align: center;
+      padding: 14px !important;
+      border-radius: 4px;
+      border-bottom: none !important;
+      margin-top: 8px;
+    }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 768px) {
+
+      /* Nav */
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .nav-wordmark { font-size: 26px; }
+
+      /* Hero */
+      .hero { padding: 100px 24px 60px; }
+      .hero-headline { font-size: 48px; }
+      .hero-body { font-size: 15px; }
+      .hero-deco { display: none; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .btn-primary, .btn-ghost { width: 100%; text-align: center; }
+
+      /* Stat bar */
+      .stat-bar {
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        padding: 24px;
+      }
+      .stat-item {
+        padding: 16px 12px;
+        border-right: none;
+        border-bottom: 1px solid rgba(245,237,224,0.08);
+      }
+      .stat-item:nth-child(odd) { border-right: 1px solid rgba(245,237,224,0.08); }
+      .stat-item:nth-child(3), .stat-item:nth-child(4) { border-bottom: none; }
+
+      /* Services */
+      .services { padding: 56px 20px; }
+      .services-primary-grid { grid-template-columns: 1fr; gap: 2px; }
+      .service-card-primary:first-child { border-radius: 8px 8px 0 0; }
+      .service-card-primary:last-child { border-radius: 0 0 8px 8px; }
+      .services-secondary-grid { grid-template-columns: 1fr 1fr; }
+
+      /* Areas of focus */
+      .areas { padding: 56px 20px; }
+      .tab-nav { gap: 2px; }
+      .tab-btn { font-size: 10px; padding: 10px 10px; letter-spacing: 0.1em; }
+      .vertical-grid { grid-template-columns: 1fr; }
+      .focus-panel { grid-template-columns: 1fr; gap: 24px; }
+
+      /* Why */
+      .why { padding: 56px 20px; }
+      .why-grid { grid-template-columns: 1fr; gap: 2px; }
+      .why-item:nth-child(1) { border-radius: 8px 8px 0 0; }
+      .why-item:nth-child(2) { border-radius: 0; }
+      .why-item:nth-child(3) { border-radius: 0; }
+      .why-item:nth-child(4) { border-radius: 0 0 8px 8px; }
+
+      /* About */
+      .about {
+        grid-template-columns: 1fr;
+        padding: 56px 20px;
+        gap: 40px;
+      }
+      .about-visual { aspect-ratio: unset; padding: 36px; min-height: 240px; }
+      .about-visual-wordmark { font-size: 36px; }
+
+      /* Contact */
+      .contact { padding: 56px 20px; }
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+
+      /* Footer */
+      footer {
+        flex-direction: column;
+        gap: 20px;
+        padding: 28px 20px;
+        text-align: center;
+      }
+      .footer-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
+
+      /* Section headings */
+      .section-heading { font-size: 32px; margin-bottom: 32px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-headline { font-size: 38px; }
+      .services-secondary-grid { grid-template-columns: 1fr; }
+      .tab-btn { font-size: 9px; padding: 8px 8px; }
+      .about-stats { flex-direction: column; gap: 16px; }
+    }
   </style>
 </head>
 <body>
@@ -1087,7 +1225,18 @@
     <li><a href="#about">About</a></li>
     <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
   </ul>
+  <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="closeMobileMenu()">Services</a>
+  <a href="#areas" onclick="closeMobileMenu()">Areas of Focus</a>
+  <a href="#about" onclick="closeMobileMenu()">About</a>
+  <a href="#contact" class="mobile-cta" onclick="closeMobileMenu()">Get a Quote</a>
+</div>
 
 <!-- ===================== HERO ===================== -->
 <section class="hero" id="home">
@@ -1338,7 +1487,7 @@
           3PLs and freight forwarders use us because their primary carriers fail, and when that happens they need a partner who executes without drama. We are not trying to take your account. We are trying to be the vendor you call when the load has to go and the options you have are not going to cut it.
         </div>
         <div class="fp-body">
-          Some of the largest freight brokerages in the country are in our customer list. That is not a brag. It is proof that even the biggest names in the industry need a small, nimble team that is picky about who it works with and takes pride in executing at the highest level.
+          Echo and Coyote are in our customer list. That is not a brag. It is proof that even the biggest brokerages in the industry need a small, nimble team that is picky about who it works with and takes pride in executing at the highest level.
         </div>
         <div class="fp-body">
           We are selective by design. We choose our partners carefully so we can dedicate the attention every load deserves. If you want a vendor who picks up the phone and gets it done, that is exactly what we are.
@@ -1381,7 +1530,7 @@
     <div class="why-item">
       <div class="why-num">03</div>
       <div class="why-title">Operators, Not Order-Takers</div>
-      <div class="why-body">Every person on our team has 10-plus years of hands-on freight experience, built from the ground up at some of the largest asset-based expedited carriers in the country. We know how carriers think, how they price, and what they prioritize because we lived it. Those relationships do not just help us find capacity. They help us find the right capacity, fast..</div>
+      <div class="why-body">Every person on our team has 10-plus years of hands-on freight experience. Pete built and ran expedited divisions at major brokerages. We have been on both sides of this industry and we run our operation the right way because we know what the wrong way looks like.</div>
     </div>
     <div class="why-item">
       <div class="why-num">04</div>
@@ -1519,6 +1668,15 @@
     const names = ['manufacturing', 'events', 'ltl', '3pl'];
     btn.onclick = () => setTab(names[i]);
   });
+
+  function toggleMobileMenu() {
+    var menu = document.getElementById("mobileMenu");
+    menu.classList.toggle("open");
+  }
+
+  function closeMobileMenu() {
+    document.getElementById("mobileMenu").classList.remove("open");
+  }
 
   // Smooth active nav highlight on scroll
   const sections = document.querySelectorAll('section[id], div[id]');
