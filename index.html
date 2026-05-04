@@ -516,11 +516,10 @@
     /* Tab nav */
     .tab-nav {
       display: flex;
-      gap: 4px;
+      gap: 8px;
       margin-bottom: 40px;
-      border-bottom: 1px solid var(--mist);
-      padding-bottom: 0;
       flex-wrap: wrap;
+      border-bottom: none;
     }
 
     .tab-btn {
@@ -531,17 +530,20 @@
       text-transform: uppercase;
       color: rgba(43,26,20,0.45);
       background: none;
-      border: none;
-      padding: 12px 20px;
+      border: 1.5px solid transparent;
+      padding: 10px 22px;
+      border-radius: 30px;
       cursor: pointer;
-      border-bottom: 2px solid transparent;
-      margin-bottom: -1px;
-      transition: color 0.2s, border-color 0.2s;
+      transition: color 0.25s, border-color 0.25s, background 0.25s;
     }
-    .tab-btn:hover { color: var(--clay); }
+    .tab-btn:hover {
+      color: var(--clay);
+      border-color: rgba(139,58,42,0.3);
+    }
     .tab-btn.active {
       color: var(--clay);
-      border-bottom-color: var(--clay);
+      border-color: var(--clay);
+      background: transparent;
     }
 
     .tab-panel { display: none; }
@@ -1245,7 +1247,7 @@
     We read<br>the <span class="accent">course.</span>
   </h1>
   <p class="hero-body">
-    Caddie is a selective, operator-led freight brokerage built around sprinter vans and straight trucks. We cover the lower 48 via ground, and the world the air. Quotes within minutes. Trucks to pickup in 2 hours. The Caddie Way!
+    Caddie is a selective, operator-led freight brokerage built around sprinter vans and straight trucks. We cover the lower 48 and the air. Quote in minutes. Truck in 2 hours. No drama.
   </p>
   <div class="hero-actions">
     <a href="#contact" class="btn-primary">Get a Quote</a>
@@ -1649,11 +1651,22 @@
 </footer>
 
 <script>
-  function setTab(name) {
+  const tabNames = ['manufacturing', 'events', 'ltl', '3pl'];
+  let currentTab = 0;
+  let autoTimer = null;
+
+  function setTab(name, fromUser) {
+    if (fromUser) {
+      // Reset the auto-cycle timer when user clicks
+      clearInterval(autoTimer);
+      startAutoCycle();
+    }
+    currentTab = tabNames.indexOf(name);
+    if (currentTab === -1) currentTab = 0;
+
     // Update buttons
     document.querySelectorAll('.tab-btn').forEach((btn, i) => {
-      const names = ['manufacturing', 'events', 'ltl', '3pl'];
-      btn.classList.toggle('active', names[i] === name);
+      btn.classList.toggle('active', tabNames[i] === name);
     });
     // Update panels
     document.querySelectorAll('.tab-panel').forEach(panel => {
@@ -1663,11 +1676,22 @@
     if (target) target.classList.add('active');
   }
 
+  function nextTab() {
+    currentTab = (currentTab + 1) % tabNames.length;
+    setTab(tabNames[currentTab], false);
+  }
+
+  function startAutoCycle() {
+    autoTimer = setInterval(nextTab, 5000);
+  }
+
   // Wire up tab buttons
   document.querySelectorAll('.tab-btn').forEach((btn, i) => {
-    const names = ['manufacturing', 'events', 'ltl', '3pl'];
-    btn.onclick = () => setTab(names[i]);
+    btn.onclick = () => setTab(tabNames[i], true);
   });
+
+  // Start auto-cycling on load
+  startAutoCycle();
 
   function toggleMobileMenu() {
     var menu = document.getElementById("mobileMenu");
