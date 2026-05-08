@@ -1214,17 +1214,17 @@
       <a href="#areas">Areas of Focus</a>
       <div class="dropdown-menu">
         <div class="dropdown-label">Manufacturing</div>
-        <a href="#areas" onclick="setTab('manufacturing')">Automotive</a>
-        <a href="#areas" onclick="setTab('manufacturing')">Plastics &amp; Packaging</a>
-        <a href="#areas" onclick="setTab('manufacturing')">Heavy Machinery</a>
-        <a href="#areas" onclick="setTab('manufacturing')">Aerospace</a>
-        <a href="#areas" onclick="setTab('manufacturing')">Retail</a>
-        <a href="#areas" onclick="setTab('manufacturing')">Healthcare</a>
-        <a href="#areas" onclick="setTab('manufacturing')">Energy</a>
+        <a href="#areas" onclick="event.preventDefault();setTab('manufacturing')">Automotive</a>
+        <a href="#areas" onclick="event.preventDefault();setTab('manufacturing')">Plastics &amp; Packaging</a>
+        <a href="#areas" onclick="event.preventDefault();setTab('manufacturing')">Heavy Machinery</a>
+        <a href="#areas" onclick="event.preventDefault();setTab('manufacturing')">Aerospace</a>
+        <a href="#areas" onclick="event.preventDefault();setTab('manufacturing')">Retail</a>
+        <a href="#areas" onclick="event.preventDefault();setTab('manufacturing')">Healthcare</a>
+        <a href="#areas" onclick="event.preventDefault();setTab('manufacturing')">Energy</a>
         <div class="dropdown-divider"></div>
-        <a href="#areas" onclick="setTab('events')">Events &amp; Trade Shows</a>
-        <a href="#areas" onclick="setTab('ltl')">LTL Rescue &amp; Final Mile</a>
-        <a href="#areas" onclick="setTab('3pl')">3PLs &amp; Freight Forwarders</a>
+        <a href="#areas" onclick="event.preventDefault();setTab('events')">Events &amp; Trade Shows</a>
+        <a href="#areas" onclick="event.preventDefault();setTab('ltl')">LTL Rescue &amp; Final Mile</a>
+        <a href="#areas" onclick="event.preventDefault();setTab('3pl')">3PLs &amp; Freight Forwarders</a>
       </div>
     </li>
     <li><a href="#about">About</a></li>
@@ -1365,7 +1365,7 @@
         <div class="vc-section-label vc-challenge-label">The Challenge</div>
         <div class="vc-text">A line-down situation costs thousands of dollars per minute. Parts delays ripple through entire production schedules and every hour of downtime has a dollar figure attached to it.</div>
         <div class="vc-section-label vc-solution-label">How Caddie Helps</div>
-        <div class="vc-solution-text">Quotes within minutes, on-site within 2 hours. Our operators understand automotive urgency and treat every line-down like the clock is running, because it is. Echo and Coyote call us for exactly this.</div>
+        <div class="vc-solution-text">Quotes within minutes. Trucks in 2 hours. We understand what a line-down costs and we treat every shipment like the clock is running, because it is. No runaround, no delays. Just a truck confirmed and a delivery made.</div>
       </div>
 
       <div class="vertical-card">
@@ -1463,7 +1463,7 @@
           We pick it up in a sprinter or straight truck and deliver it direct. No more hub touches. No more estimated delivery windows that keep shifting. Just a truck on the ground and a confirmed delivery commitment.
         </div>
         <div class="fp-body">
-          Pete's background in LTL means we understand what went wrong and exactly how to fix it. We also have straight truck pricing loaded into major broker systems at rates that often beat standard LTL. So sometimes the better solution was never LTL in the first place.
+          Our team's background in LTL means we understand what went wrong and exactly how to fix it. We also have straight truck pricing loaded into major broker systems at rates that often beat standard LTL. So sometimes the better solution was never LTL in the first place.
         </div>
       </div>
       <div class="fp-right">
@@ -1492,7 +1492,7 @@
           3PLs and freight forwarders use us because their primary carriers fail, and when that happens they need a partner who executes without drama. We are not trying to take your account. We are trying to be the vendor you call when the load has to go and the options you have are not going to cut it.
         </div>
         <div class="fp-body">
-          Echo and Coyote are in our customer list. That is not a brag. It is proof that even the biggest brokerages in the industry need a small, nimble team that is picky about who it works with and takes pride in executing at the highest level.
+          Some of the largest brokerages in the country are in our customer list. That is not a brag. It is proof that even the biggest names in the industry need a small, nimble team that is picky about who it works with and takes pride in executing at the highest level.
         </div>
         <div class="fp-body">
           We are selective by design. We choose our partners carefully so we can dedicate the attention every load deserves. If you want a vendor who picks up the phone and gets it done, that is exactly what we are.
@@ -1535,7 +1535,7 @@
     <div class="why-item">
       <div class="why-num">03</div>
       <div class="why-title">Operators, Not Order-Takers</div>
-      <div class="why-body">Every person on our team has 10-plus years of hands-on freight experience. Pete built and ran expedited divisions at major brokerages. We have been on both sides of this industry and we run our operation the right way because we know what the wrong way looks like.</div>
+      <div class="why-body">Every person on our team has 10-plus years of hands-on freight experience, built from the ground up at the largest asset-based expedited carriers in the country. We know how carriers think, how they price, and what they prioritize because we lived it.</div>
     </div>
     <div class="why-item">
       <div class="why-num">04</div>
@@ -1708,7 +1708,7 @@
 
   // Wire up tab buttons
   document.querySelectorAll('.tab-btn').forEach((btn, i) => {
-    btn.onclick = () => setTab(tabNames[i], true);
+    btn.onclick = (e) => { e.preventDefault(); setTab(tabNames[i], true); };
   });
 
   // Start auto-cycling on load
