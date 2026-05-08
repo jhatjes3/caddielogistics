@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Caddie Logistics | Expedited Freight Brokerage</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%23f5ede0'/><text x='14' y='74' font-size='72' font-family='Georgia,serif' font-weight='900' fill='%238b3a2a'>c</text><circle cx='86' cy='72' r='8' fill='%23c47b60'/></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Barlow+Condensed:wght@300;400;500;600&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -515,11 +516,10 @@
     /* Tab nav */
     .tab-nav {
       display: flex;
-      gap: 4px;
+      gap: 8px;
       margin-bottom: 40px;
-      border-bottom: 1px solid var(--mist);
-      padding-bottom: 0;
       flex-wrap: wrap;
+      border-bottom: none;
     }
 
     .tab-btn {
@@ -530,17 +530,20 @@
       text-transform: uppercase;
       color: rgba(43,26,20,0.45);
       background: none;
-      border: none;
-      padding: 12px 20px;
+      border: 1.5px solid transparent;
+      padding: 10px 22px;
+      border-radius: 30px;
       cursor: pointer;
-      border-bottom: 2px solid transparent;
-      margin-bottom: -1px;
-      transition: color 0.2s, border-color 0.2s;
+      transition: color 0.25s, border-color 0.25s, background 0.25s;
     }
-    .tab-btn:hover { color: var(--clay); }
+    .tab-btn:hover {
+      color: var(--clay);
+      border-color: rgba(139,58,42,0.3);
+    }
     .tab-btn.active {
       color: var(--clay);
-      border-bottom-color: var(--clay);
+      border-color: var(--clay);
+      background: transparent;
     }
 
     .tab-panel { display: none; }
@@ -974,17 +977,17 @@
       outline: none;
       width: 100%;
       transition: border-color 0.2s;
-      opacity: 0.6;
-      cursor: not-allowed;
     }
+    .form-input:focus { border-color: var(--clay-lt); }
     .form-input::placeholder { color: #b8a898; }
+    .form-input[aria-invalid="true"] { border-color: #c0392b; }
 
     textarea.form-input { resize: vertical; min-height: 100px; }
 
     .form-submit {
       width: 100%;
-      background: rgba(139,58,42,0.3);
-      color: rgba(245,237,224,0.4);
+      background: var(--clay);
+      color: var(--cream);
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 600;
       font-size: 12px;
@@ -993,9 +996,12 @@
       padding: 16px;
       border-radius: 4px;
       border: none;
-      cursor: not-allowed;
+      cursor: pointer;
       margin-top: 8px;
+      transition: background 0.2s;
     }
+    .form-submit:hover { background: var(--ink); }
+    .form-submit:disabled { background: rgba(139,58,42,0.4); cursor: not-allowed; }
 
     /* ===================== FOOTER ===================== */
     footer {
@@ -1244,7 +1250,7 @@
     We read<br>the <span class="accent">course.</span>
   </h1>
   <p class="hero-body">
-    Caddie is a selective, operator-led freight brokerage built around sprinter vans and straight trucks. We cover the lower 48 and the air. Quote in minutes. Truck in 2 hours. No drama.
+    Caddie is a selective, operator-led freight brokerage built around sprinter vans and straight trucks. We cover the all 50 states and the air. Quotes within minutes. Trucks in 2 hours. No drama.
   </p>
   <div class="hero-actions">
     <a href="#contact" class="btn-primary">Get a Quote</a>
@@ -1257,11 +1263,11 @@
 <div class="stat-bar">
   <div class="stat-item">
     <div class="stat-number">2 hrs</div>
-    <div class="stat-label">Truck on site<br>or sooner</div>
+    <div class="stat-label">Trucks in 2 hours<br>or sooner</div>
   </div>
   <div class="stat-item">
-    <div class="stat-number">48</div>
-    <div class="stat-label">States covered<br>Lower 48</div>
+    <div class="stat-number">50</div>
+    <div class="stat-label">States covered<br>All 50 States</div>
   </div>
   <div class="stat-item">
     <div class="stat-number">10+</div>
@@ -1290,7 +1296,7 @@
         <span class="scp-spec">Up to 3,500 lbs</span>
         <span class="scp-spec">Cargo van through 170" sprinter</span>
       </div>
-      <div class="scp-desc">The fastest ground option for time-critical shipments. Solo or team drivers depending on urgency. Quote in minutes, truck confirmed with a truck in hand.</div>
+      <div class="scp-desc">The fastest ground option for time-critical shipments. Solo or team drivers depending on urgency. Quotes within minutes. Trucks in 2 hours.</div>
     </div>
     <div class="service-card-primary">
       <div class="scp-num">02</div>
@@ -1316,7 +1322,7 @@
   <div class="services-secondary-grid">
     <div class="service-card-secondary">
       <div class="scs-title">Full Truckload</div>
-      <div class="scs-desc">Dry van coverage across the lower 48. We have the network when the load demands a full trailer.</div>
+      <div class="scs-desc">Dry van coverage across the all 50 states. We have the network when the load demands a full trailer.</div>
     </div>
     <div class="service-card-secondary">
       <div class="scs-title">Flatbed</div>
@@ -1341,10 +1347,10 @@
   </div>
 
   <div class="tab-nav">
-    <button class="tab-btn active" onclick="setTab('manufacturing')">Manufacturing</button>
-    <button class="tab-btn" onclick="setTab('events')">Events &amp; Trade Shows</button>
-    <button class="tab-btn" onclick="setTab('ltl')">LTL Rescue &amp; Final Mile</button>
-    <button class="tab-btn" onclick="setTab('3pl')">3PLs &amp; Freight Forwarders</button>
+    <button class="tab-btn active" onclick="event.preventDefault();setTab('manufacturing', true)">Manufacturing</button>
+    <button class="tab-btn" onclick="event.preventDefault();goToTab('events')">Events &amp; Trade Shows</button>
+    <button class="tab-btn" onclick="event.preventDefault();goToTab('ltl')">LTL Rescue &amp; Final Mile</button>
+    <button class="tab-btn" onclick="event.preventDefault();goToTab('3pl')">3PLs &amp; Freight Forwarders</button>
   </div>
 
   <!-- MANUFACTURING -->
@@ -1359,7 +1365,7 @@
         <div class="vc-section-label vc-challenge-label">The Challenge</div>
         <div class="vc-text">A line-down situation costs thousands of dollars per minute. Parts delays ripple through entire production schedules and every hour of downtime has a dollar figure attached to it.</div>
         <div class="vc-section-label vc-solution-label">How Caddie Helps</div>
-        <div class="vc-solution-text">Truck confirmed in minutes, on-site within 2 hours. Our operators understand automotive urgency and treat every line-down like the clock is running, because it is. Echo and Coyote call us for exactly this.</div>
+        <div class="vc-solution-text">Quotes within minutes. Trucks in 2 hours. We understand what a line-down costs and we treat every shipment like the clock is running, because it is. No runaround, no delays. Just a truck confirmed and a delivery made.</div>
       </div>
 
       <div class="vertical-card">
@@ -1435,7 +1441,7 @@
         </div>
         <div class="fp-block">
           <div class="fp-block-label solution">How Caddie Handles It</div>
-          <div class="fp-block-text bold">Quote in minutes. Truck in 2 hours. Air if you need it. We confirm the truck before we hang up the phone and we communicate every step of the way from pickup to the show floor.</div>
+          <div class="fp-block-text bold">Quotes within minutes. Trucks in 2 hours. Air if you need it. We confirm the truck before we hang up the phone and we communicate every step of the way from pickup to the show floor.</div>
         </div>
         <div class="fp-block">
           <div class="fp-block-label">What We Move</div>
@@ -1457,7 +1463,7 @@
           We pick it up in a sprinter or straight truck and deliver it direct. No more hub touches. No more estimated delivery windows that keep shifting. Just a truck on the ground and a confirmed delivery commitment.
         </div>
         <div class="fp-body">
-          Pete's background in LTL means we understand what went wrong and exactly how to fix it. We also have straight truck pricing loaded into major broker systems at rates that often beat standard LTL. So sometimes the better solution was never LTL in the first place.
+          Our team's background in LTL means we understand what went wrong and exactly how to fix it. We also have straight truck pricing loaded into major broker systems at rates that often beat standard LTL. So sometimes the better solution was never LTL in the first place.
         </div>
       </div>
       <div class="fp-right">
@@ -1486,7 +1492,7 @@
           3PLs and freight forwarders use us because their primary carriers fail, and when that happens they need a partner who executes without drama. We are not trying to take your account. We are trying to be the vendor you call when the load has to go and the options you have are not going to cut it.
         </div>
         <div class="fp-body">
-          Echo and Coyote are in our customer list. That is not a brag. It is proof that even the biggest brokerages in the industry need a small, nimble team that is picky about who it works with and takes pride in executing at the highest level.
+          Some of the largest brokerages in the country are in our customer list. That is not a brag. It is proof that even the biggest names in the industry need a small, nimble team that is picky about who it works with and takes pride in executing at the highest level.
         </div>
         <div class="fp-body">
           We are selective by design. We choose our partners carefully so we can dedicate the attention every load deserves. If you want a vendor who picks up the phone and gets it done, that is exactly what we are.
@@ -1499,7 +1505,7 @@
         </div>
         <div class="fp-block">
           <div class="fp-block-label solution">How Caddie Handles It</div>
-          <div class="fp-block-text bold">Call us. Truck confirmed in minutes. Pickup within 2 hours. Real-time communication through delivery. Your customer never needs to know there was a problem because there will not be one by the time we are done.</div>
+          <div class="fp-block-text bold">Call us. Quotes within minutes. Pickup within 2 hours. Real-time communication through delivery. Your customer never needs to know there was a problem because there will not be one by the time we are done.</div>
         </div>
         <div class="fp-block">
           <div class="fp-block-label">What Makes Us Different</div>
@@ -1524,12 +1530,12 @@
     <div class="why-item">
       <div class="why-num">02</div>
       <div class="why-title">Speed That Is Measurable</div>
-      <div class="why-body">Quote with a truck in hand in minutes. Pickup within 2 hours. These are numbers, not claims. Solo or team drivers depending on urgency. We do not say we are fast. We show up fast.</div>
+      <div class="why-body">Quotes within minutes. Pickup within 2 hours. These are numbers, not claims. Solo or team drivers depending on urgency. We do not say we are fast. We show up fast.</div>
     </div>
     <div class="why-item">
       <div class="why-num">03</div>
       <div class="why-title">Operators, Not Order-Takers</div>
-      <div class="why-body">Every person on our team has 10-plus years of hands-on freight experience. Pete built and ran expedited divisions at major brokerages. We have been on both sides of this industry and we run our operation the right way because we know what the wrong way looks like.</div>
+      <div class="why-body">Every person on our team has 10-plus years of hands-on freight experience, built from the ground up at the largest asset-based expedited carriers in the country. We know how carriers think, how they price, and what they prioritize because we lived it.</div>
     </div>
     <div class="why-item">
       <div class="why-num">04</div>
@@ -1553,7 +1559,7 @@
           <div class="about-stat-label">Years per operator</div>
         </div>
         <div class="about-stat">
-          <div class="about-stat-num">48</div>
+          <div class="about-stat-num">50</div>
           <div class="about-stat-label">States covered</div>
         </div>
         <div class="about-stat">
@@ -1604,30 +1610,48 @@
     </div>
 
     <div class="contact-form-wrap">
-      <div class="form-notice">Online form coming soon &nbsp;&mdash;&nbsp; call or email us directly</div>
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">First Name</label>
-          <input class="form-input" type="text" placeholder="Joey" disabled />
+
+      <div data-fs-success style="display:none; background: var(--mist); border-left: 3px solid var(--clay); border-radius: 4px; padding: 16px 20px; margin-bottom: 20px; font-family: 'Barlow Condensed', sans-serif; font-size: 14px; letter-spacing: 0.05em; color: var(--clay);">
+        Message sent. We will be in touch shortly.
+      </div>
+      <div data-fs-error style="display:none; background: #fdf0ee; border-left: 3px solid #c0392b; border-radius: 4px; padding: 16px 20px; margin-bottom: 20px; font-family: 'Barlow Condensed', sans-serif; font-size: 14px; color: #c0392b;">
+        Something went wrong. Please call or email us directly.
+      </div>
+
+      <form id="caddie-contact">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">First Name</label>
+            <input class="form-input" type="text" name="first_name" placeholder="First Name" data-fs-field required />
+            <span data-fs-error="first_name" style="font-size:11px; color:#c0392b; font-family: sans-serif;"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name</label>
+            <input class="form-input" type="text" name="last_name" placeholder="Last Name" data-fs-field />
+          </div>
         </div>
         <div class="form-group">
-          <label class="form-label">Last Name</label>
-          <input class="form-input" type="text" placeholder="Hatjes" disabled />
+          <label class="form-label">Company</label>
+          <input class="form-input" type="text" name="company" placeholder="Company Name" data-fs-field />
         </div>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Company</label>
-        <input class="form-input" type="text" placeholder="Company Name" disabled />
-      </div>
-      <div class="form-group">
-        <label class="form-label">Email</label>
-        <input class="form-input" type="email" placeholder="you@company.com" disabled />
-      </div>
-      <div class="form-group">
-        <label class="form-label">Tell us about your freight</label>
-        <textarea class="form-input" placeholder="Origin, destination, weight, equipment needed..." disabled></textarea>
-      </div>
-      <button class="form-submit" disabled>Submit Request</button>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input class="form-input" type="email" name="email" placeholder="you@company.com" data-fs-field required />
+          <span data-fs-error="email" style="font-size:11px; color:#c0392b; font-family: sans-serif;"></span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tell us about your freight</label>
+          <textarea class="form-input" name="message" placeholder="Origin, destination, weight, equipment needed..." data-fs-field required></textarea>
+          <span data-fs-error="message" style="font-size:11px; color:#c0392b; font-family: sans-serif;"></span>
+        </div>
+        <button type="submit" class="form-submit" data-fs-submit-btn>Submit Request</button>
+      </form>
+
+      <script>
+        window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+        formspree('initForm', { formElement: '#caddie-contact', formId: 'mgodlgld' });
+      </script>
+      <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
     </div>
   </div>
 </section>
@@ -1652,54 +1676,49 @@
   let currentTab = 0;
   let autoTimer = null;
 
-  // Switch tab WITHOUT scrolling (used when already on the section)
-  function setTab(name) {
-    const scrollY = window.scrollY;
+  function setTab(name, fromUser) {
+    if (fromUser) {
+      // Reset the auto-cycle timer when user clicks
+      clearInterval(autoTimer);
+      startAutoCycle();
+    }
     currentTab = tabNames.indexOf(name);
     if (currentTab === -1) currentTab = 0;
+
+    // Update buttons
     document.querySelectorAll('.tab-btn').forEach((btn, i) => {
       btn.classList.toggle('active', tabNames[i] === name);
     });
+    // Update panels
     document.querySelectorAll('.tab-panel').forEach(panel => {
       panel.classList.remove('active');
     });
     const target = document.getElementById('tab-' + name);
     if (target) target.classList.add('active');
-    // Restore scroll position so page does not jump
-    window.scrollTo(0, scrollY);
-  }
-
-  // Navigate to section AND switch tab (used from dropdown/nav)
-  function goToTab(name) {
-    setTab(name);
-    clearInterval(autoTimer);
-    startAutoCycle();
-    const section = document.getElementById('areas');
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
-    }
   }
 
   function nextTab() {
     currentTab = (currentTab + 1) % tabNames.length;
-    setTab(tabNames[currentTab]);
+    setTab(tabNames[currentTab], false);
+  }
+
+  // Called from dropdown - scrolls to section then switches tab
+  function goToTab(name) {
+    setTab(name, true);
+    const section = document.getElementById('areas');
+    if (section) section.scrollIntoView({ behavior: 'smooth' });
   }
 
   function startAutoCycle() {
-    autoTimer = setInterval(nextTab, 5000);
+    autoTimer = setInterval(nextTab, 15000);
   }
 
-  // Wire up tab buttons - no scroll, just switch
+  // Wire up tab buttons
   document.querySelectorAll('.tab-btn').forEach((btn, i) => {
-    btn.onclick = (e) => {
-      e.preventDefault();
-      clearInterval(autoTimer);
-      setTab(tabNames[i]);
-      startAutoCycle();
-    };
+    btn.onclick = (e) => { e.preventDefault(); setTab(tabNames[i], true); };
   });
 
-  // Start auto-cycling
+  // Start auto-cycling on load
   startAutoCycle();
 
   function toggleMobileMenu() {
@@ -1711,7 +1730,7 @@
     document.getElementById("mobileMenu").classList.remove("open");
   }
 
-  // Nav highlight on scroll
+  // Smooth active nav highlight on scroll
   const sections = document.querySelectorAll('section[id], div[id]');
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY + 100;
@@ -1719,7 +1738,9 @@
       const top = sec.offsetTop;
       const bottom = top + sec.offsetHeight;
       if (scrollY >= top && scrollY < bottom) {
-        document.querySelectorAll('.nav-links a').forEach(a => { a.style.color = ''; });
+        document.querySelectorAll('.nav-links a').forEach(a => {
+          a.style.color = '';
+        });
         const match = document.querySelector(`.nav-links a[href="#${sec.id}"]`);
         if (match && !match.classList.contains('nav-cta')) {
           match.style.color = '#8b3a2a';
